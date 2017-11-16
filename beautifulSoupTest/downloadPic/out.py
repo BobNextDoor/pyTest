@@ -4,7 +4,6 @@ import os
 from bs4 import BeautifulSoup
 from urllib import request
 
-
 #set headers
 opener = request.build_opener()
 opener.addheaders = [('User-Agent','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36')]
@@ -24,7 +23,7 @@ def getContentUrlList(url):
 	return urlList
 
 def fixUrl(url):
-	baseUrl = 'http://91.t9p.today/index.php'
+	baseUrl = 'http://'
 	return baseUrl[:-9] + url
 #get whole pic from a single url
 def downloadPic(url):
@@ -47,11 +46,8 @@ def downloadPic(url):
 		request.urlretrieve(imgPath,imgName)
 		print("done")
 
-#def getImg(url):
-	
-#get content url
 
-desUrl = "http://91.t9p.today/index.php"
+desUrl = "http://"
 
 bsObj = getBSObj(desUrl)
 
@@ -64,8 +60,7 @@ for url in urlList:
 	bs = getBSObj(url)
 	print(bs.head.title.text[:-45])
 	#print (bs.prettify)
-	imgurl = bs.findAll('img',{'file':re.compile(".*(attachments).*")})
 	#for img in imgurl:
-	#	print(img)
+	#print(img)
 	downloadPic(url)
 	print("sigle page Done")
